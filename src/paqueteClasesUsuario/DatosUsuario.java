@@ -2,7 +2,7 @@ package paqueteClasesUsuario;
 
 import java.util.Date;
 
-public abstract class DatosUsuario {
+public class DatosUsuario {
     //Atributos de nombre
     protected String nombreCompleto = "None";
     protected String apellidoPaterno = "None";

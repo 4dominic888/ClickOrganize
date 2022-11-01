@@ -7,6 +7,7 @@ public class Usuario{
     
     private String username;
     private String password;
+    private boolean administrador = false;
     private DatosUsuario datos;
     
     //Constructores
@@ -47,6 +48,15 @@ public class Usuario{
     public void setDatos(DatosUsuario datos) {
         this.datos = datos;
     }
+    
+    public boolean isAdministrador() {
+        return administrador;
+    }
+
+    public void setAdministrador(boolean administrador) {
+        this.administrador = administrador;
+    }
+    
     // </editor-fold> 
     
 }
