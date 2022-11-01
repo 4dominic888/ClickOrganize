@@ -5,6 +5,8 @@
 package ventanas;
 
 import javax.swing.JOptionPane;
+import Conexion.ConexionUsuarios;
+import java.sql.ResultSet;
 
 /**
  *
@@ -12,9 +14,8 @@ import javax.swing.JOptionPane;
  */
 public class vIniciarSesion extends javax.swing.JFrame {
 
-    /**
-     * Creates new form vIniciarSesion
-     */
+    vCrearCuenta ventana = new vCrearCuenta();
+            
     public vIniciarSesion() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -108,19 +109,41 @@ public class vIniciarSesion extends javax.swing.JFrame {
     
     
     private void btnIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarSesionActionPerformed
-        //Username validations
-        if(txtUserName.getText().trim().isEmpty()) {JOptionPane.showMessageDialog(null, "No ha ingresado un nombre de usuario válido",
+         
+        ConexionUsuarios conexion = new ConexionUsuarios();
+        try {
+            
+            //Username validations
+            if(txtUserName.getText().isBlank()) {JOptionPane.showMessageDialog(null, "No ha ingresado un nombre de usuario válido",
                 "Error al Iniciar sesión", JOptionPane.WARNING_MESSAGE); return;}
-        
-        //Password validations
-        if(txtPassword.getText().trim().isEmpty()) {JOptionPane.showMessageDialog(null, "No ha ingresado la contraseña",
+            
+            ResultSet resultado = conexion.consultarRegistro("SELECT * FROM Usuarios WHERE Username = '" + txtUserName.getText() + "'");
+            if(!resultado.next()) {JOptionPane.showMessageDialog(null, "No existe este usuario",
                 "Error al Iniciar sesión", JOptionPane.WARNING_MESSAGE); return;}
+            
+            //Password validations
+            if(txtPassword.getText().isBlank()) {JOptionPane.showMessageDialog(null, "No ha ingresado la contraseña",
+                "Error al Iniciar sesión", JOptionPane.WARNING_MESSAGE); return;}
+            
+            if(!resultado.getString(2).equals(txtPassword.getText())) {JOptionPane.showMessageDialog(null, "La contraseña no coincide con el usuario",
+                "Error al Iniciar sesión", JOptionPane.WARNING_MESSAGE); return;}
+            
+            System.out.println(resultado.getShort(8));
+            
+            String bienvenida = (resultado.getString(8).trim().equals("1")) ? "Bienvenido " + resultado.getString(4) : "Bienvenida " + resultado.getString(4);
+            
+            JOptionPane.showMessageDialog(null, bienvenida ,
+                "Iniciar Sesion", JOptionPane.INFORMATION_MESSAGE);
+            
+        } 
+        catch (Exception e) {
+            System.out.println("sucedio un error\n" + e);
+        }
         
         /*Validar que una cuenta con esos datos exista*/
     }//GEN-LAST:event_btnIniciarSesionActionPerformed
 
     private void lbCrearCuentaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbCrearCuentaMouseClicked
-        vCrearCuenta ventana = new vCrearCuenta();
         ventana.show(true);
         this.show(false);
     }//GEN-LAST:event_lbCrearCuentaMouseClicked
