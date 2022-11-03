@@ -48,6 +48,7 @@ public class vCrearCuenta extends javax.swing.JFrame {
         bg_CrearCuenta = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Crear Cuenta");
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -106,11 +107,17 @@ public class vCrearCuenta extends javax.swing.JFrame {
         lbUsername.setForeground(new java.awt.Color(204, 204, 204));
         lbUsername.setText("Username");
         getContentPane().add(lbUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 340, -1, -1));
+
+        txtUsername.setBackground(new java.awt.Color(102, 102, 102));
+        txtUsername.setForeground(new java.awt.Color(204, 204, 204));
         getContentPane().add(txtUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 360, 240, -1));
 
         lbPassword.setForeground(new java.awt.Color(204, 204, 204));
         lbPassword.setText("Contraseña");
         getContentPane().add(lbPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 390, -1, -1));
+
+        txtPassword.setBackground(new java.awt.Color(102, 102, 102));
+        txtPassword.setForeground(new java.awt.Color(204, 204, 204));
         getContentPane().add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 410, 240, -1));
 
         btnRegistrarse.setBackground(new java.awt.Color(102, 102, 102));

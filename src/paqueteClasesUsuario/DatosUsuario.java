@@ -22,6 +22,10 @@ public class DatosUsuario {
         this.sexo = sexo;
     }
     
+    public DatosUsuario(){
+        
+    }
+    
     // <editor-fold defaultstate="collapsed" desc="Gets and Sets">
     
     public String getNombreCompleto() {

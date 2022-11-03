@@ -7,6 +7,10 @@ package ventanas;
 import javax.swing.JOptionPane;
 import Conexion.ConexionUsuarios;
 import java.sql.ResultSet;
+import java.util.Date;
+import java.util.HashSet;
+import paqueteClasesUsuario.DatosUsuario;
+import paqueteClasesUsuario.Usuario;
 
 /**
  *
@@ -128,12 +132,37 @@ public class vIniciarSesion extends javax.swing.JFrame {
             if(!resultado.getString(2).equals(txtPassword.getText())) {JOptionPane.showMessageDialog(null, "La contraseña no coincide con el usuario",
                 "Error al Iniciar sesión", JOptionPane.WARNING_MESSAGE); return;}
             
-            System.out.println(resultado.getShort(8));
-            
             String bienvenida = (resultado.getString(8).trim().equals("1")) ? "Bienvenido " + resultado.getString(4) : "Bienvenida " + resultado.getString(4);
             
             JOptionPane.showMessageDialog(null, bienvenida ,
                 "Iniciar Sesion", JOptionPane.INFORMATION_MESSAGE);
+            
+            // <editor-fold defaultstate="collapsed" desc="Obtener Usuario"> 
+            Usuario user = new Usuario();
+            user.setUsername(resultado.getString(1));
+            user.setPassword(resultado.getString(2));
+            user.setAdministrador((resultado.getString(3).equals("Y")) ? true : false);
+            DatosUsuario datosUsuario = new DatosUsuario();
+            datosUsuario.setNombreCompleto(resultado.getString(4));
+            datosUsuario.setApellidoPaterno(resultado.getString(5));
+            datosUsuario.setApellidoMaterno(resultado.getString(6));
+            
+            String[] fechaNacimiento = resultado.getString(7).split("-");
+            
+            Date date = new Date(Integer.parseInt(fechaNacimiento[0])-1900, 
+                                 Integer.parseInt(fechaNacimiento[1])-1,
+                                 Integer.parseInt(fechaNacimiento[2]));
+            
+            datosUsuario.setFechaNacimiento(date);
+            datosUsuario.setSexo((resultado.getString(8).equals("1")) ? 1 : 0);
+            
+            user.setDatos(datosUsuario);
+            // </editor-fold>
+            
+            vClickOrganice principal = new vClickOrganice();
+            principal.colocarDatosUsuario(user);
+            principal.show(true);
+            this.show(false);
             
         } 
         catch (Exception e) {
