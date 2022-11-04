@@ -6,9 +6,11 @@ package ventanas;
 
 import javax.swing.JOptionPane;
 import Conexion.ConexionUsuarios;
+import java.awt.Toolkit;
 import java.sql.ResultSet;
 import java.util.Date;
 import java.util.HashSet;
+import javax.swing.JTextField;
 import paqueteClasesUsuario.DatosUsuario;
 import paqueteClasesUsuario.Usuario;
 
@@ -86,10 +88,20 @@ public class vIniciarSesion extends javax.swing.JFrame {
 
         txtUserName.setBackground(new java.awt.Color(102, 102, 102));
         txtUserName.setForeground(new java.awt.Color(255, 255, 255));
+        txtUserName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtUserNameKeyTyped(evt);
+            }
+        });
         getContentPane().add(txtUserName, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 50, 210, -1));
 
         txtPassword.setBackground(new java.awt.Color(102, 102, 102));
         txtPassword.setForeground(new java.awt.Color(255, 255, 255));
+        txtPassword.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPasswordKeyTyped(evt);
+            }
+        });
         getContentPane().add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 90, 210, -1));
 
         btnIniciarSesion.setBackground(new java.awt.Color(102, 102, 102));
@@ -109,7 +121,12 @@ public class vIniciarSesion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     
-    
+    private void limiteTextBox(java.awt.event.KeyEvent evt, JTextField txt){
+        if(txt.getText().length() >= 30){
+            evt.consume();
+            Toolkit.getDefaultToolkit().beep();
+        }
+    }
     
     
     private void btnIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarSesionActionPerformed
@@ -160,6 +177,7 @@ public class vIniciarSesion extends javax.swing.JFrame {
             // </editor-fold>
             
             vClickOrganice principal = new vClickOrganice();
+            conexion.close();
             principal.colocarDatosUsuario(user);
             principal.show(true);
             this.show(false);
@@ -168,6 +186,13 @@ public class vIniciarSesion extends javax.swing.JFrame {
         catch (Exception e) {
             System.out.println("sucedio un error\n" + e);
         }
+        finally{
+                try {
+                    conexion.close();
+                } catch (Exception e) {
+                    System.out.println(e);
+                }
+            }
         
         /*Validar que una cuenta con esos datos exista*/
     }//GEN-LAST:event_btnIniciarSesionActionPerformed
@@ -180,6 +205,14 @@ public class vIniciarSesion extends javax.swing.JFrame {
     private void lbOlvidoPasswordMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbOlvidoPasswordMouseClicked
         JOptionPane.showMessageDialog(null, "Opción aun no implementada");
     }//GEN-LAST:event_lbOlvidoPasswordMouseClicked
+
+    private void txtUserNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUserNameKeyTyped
+        limiteTextBox(evt, txtUserName);
+    }//GEN-LAST:event_txtUserNameKeyTyped
+
+    private void txtPasswordKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPasswordKeyTyped
+        limiteTextBox(evt, txtPassword);
+    }//GEN-LAST:event_txtPasswordKeyTyped
 
     
     

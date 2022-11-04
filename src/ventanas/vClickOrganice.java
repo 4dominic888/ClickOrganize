@@ -1,5 +1,8 @@
 package ventanas;
 
+import java.awt.BorderLayout;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import paqueteClasesUsuario.Usuario;
 
 public class vClickOrganice extends javax.swing.JFrame {
@@ -9,10 +12,14 @@ public class vClickOrganice extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
     }
     
+    public Usuario usuario;
+    
+    
     public void colocarDatosUsuario(Usuario user){
-        lbNombreyApellido.setText(user.getDatos().getNombreCompleto() + " " + user.getDatos().getApellidoPaterno() + " " + user.getDatos().getApellidoMaterno());
-        lbNombreUsuario.setText(user.getUsername());
-        lbRangoUsuario.setText((user.isAdministrador()) ? "Administrador" : "Usuario");
+        usuario = user;
+        lbNombreyApellido.setText(usuario.getDatos().getNombreCompleto() + " " + usuario.getDatos().getApellidoPaterno() + " " + usuario.getDatos().getApellidoMaterno());
+        lbNombreUsuario.setText(usuario.getUsername());
+        lbRangoUsuario.setText((usuario.isAdministrador()) ? "Administrador" : "Usuario");
     }
 
     @SuppressWarnings("unchecked")
@@ -92,6 +99,11 @@ public class vClickOrganice extends javax.swing.JFrame {
         btnConfiguraciones.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         btnConfiguraciones.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnConfiguraciones.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
+        btnConfiguraciones.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnConfiguracionesMousePressed(evt);
+            }
+        });
         getContentPane().add(btnConfiguraciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 510, 250, 90));
 
         btnSalir.setBackground(new java.awt.Color(255, 198, 198));
@@ -101,6 +113,11 @@ public class vClickOrganice extends javax.swing.JFrame {
         btnSalir.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         btnSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnSalir.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
+        btnSalir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnSalirMousePressed(evt);
+            }
+        });
         getContentPane().add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 600, 250, 90));
 
         contenedor.setBackground(new java.awt.Color(255, 255, 255));
@@ -129,6 +146,36 @@ public class vClickOrganice extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnSalirMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalirMousePressed
+        String[] arreglo = {"Si", "No"};
+        
+        int opcion = JOptionPane.showOptionDialog(null, "¿Desea abandonar esta ventana?", "Crear cuenta", 
+                0, JOptionPane.QUESTION_MESSAGE, null , arreglo, "");
+        
+        if(opcion == 0){
+            vIniciarSesion ventana = new vIniciarSesion();
+            ventana.show(true);
+            this.show(false);            
+        }
+
+    }//GEN-LAST:event_btnSalirMousePressed
+
+    private void cargarPanel(JPanel panel){
+        panel.setSize(740, 690);
+        panel.locate(0, 0);
+        contenedor.removeAll();
+        contenedor.add(panel, BorderLayout.CENTER);
+        contenedor.revalidate();
+        contenedor.repaint();
+    }
+    
+    
+    private void btnConfiguracionesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConfiguracionesMousePressed
+        pConfiguracionCuenta elPanel = new pConfiguracionCuenta();
+        cargarPanel(elPanel);
+        elPanel.establecerDatos(usuario);
+    }//GEN-LAST:event_btnConfiguracionesMousePressed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

@@ -11,11 +11,13 @@ import javax.swing.JOptionPane;
 import paqueteClasesUsuario.DatosUsuario;
 import paqueteClasesUsuario.Usuario;
 import Conexion.ConexionUsuarios;
+import java.awt.Toolkit;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.sql.ResultSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JTextField;
 
 public class vCrearCuenta extends javax.swing.JFrame {
     
@@ -45,6 +47,7 @@ public class vCrearCuenta extends javax.swing.JFrame {
         txtPassword = new javax.swing.JPasswordField();
         btnRegistrarse = new javax.swing.JButton();
         btn_Regresar = new javax.swing.JButton();
+        tgbtnVerPassword = new javax.swing.JToggleButton();
         bg_CrearCuenta = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -66,6 +69,11 @@ public class vCrearCuenta extends javax.swing.JFrame {
 
         txtRegistroNombre.setBackground(new java.awt.Color(102, 102, 102));
         txtRegistroNombre.setForeground(new java.awt.Color(204, 204, 204));
+        txtRegistroNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtRegistroNombreKeyTyped(evt);
+            }
+        });
         getContentPane().add(txtRegistroNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 240, -1));
 
         lbApellidoPaterno.setBackground(new java.awt.Color(255, 255, 255));
@@ -75,6 +83,11 @@ public class vCrearCuenta extends javax.swing.JFrame {
 
         txtRegistroApellidoPaterno.setBackground(new java.awt.Color(102, 102, 102));
         txtRegistroApellidoPaterno.setForeground(new java.awt.Color(204, 204, 204));
+        txtRegistroApellidoPaterno.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtRegistroApellidoPaternoKeyTyped(evt);
+            }
+        });
         getContentPane().add(txtRegistroApellidoPaterno, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, 240, -1));
 
         lbApellidoMaterno.setBackground(new java.awt.Color(255, 255, 255));
@@ -84,6 +97,11 @@ public class vCrearCuenta extends javax.swing.JFrame {
 
         txtRegistroApellidoMaterno.setBackground(new java.awt.Color(102, 102, 102));
         txtRegistroApellidoMaterno.setForeground(new java.awt.Color(204, 204, 204));
+        txtRegistroApellidoMaterno.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtRegistroApellidoMaternoKeyTyped(evt);
+            }
+        });
         getContentPane().add(txtRegistroApellidoMaterno, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 240, -1));
 
         lbFechaDeNacimiento1.setForeground(new java.awt.Color(204, 204, 204));
@@ -110,6 +128,11 @@ public class vCrearCuenta extends javax.swing.JFrame {
 
         txtUsername.setBackground(new java.awt.Color(102, 102, 102));
         txtUsername.setForeground(new java.awt.Color(204, 204, 204));
+        txtUsername.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtUsernameKeyTyped(evt);
+            }
+        });
         getContentPane().add(txtUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 360, 240, -1));
 
         lbPassword.setForeground(new java.awt.Color(204, 204, 204));
@@ -118,6 +141,11 @@ public class vCrearCuenta extends javax.swing.JFrame {
 
         txtPassword.setBackground(new java.awt.Color(102, 102, 102));
         txtPassword.setForeground(new java.awt.Color(204, 204, 204));
+        txtPassword.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPasswordKeyTyped(evt);
+            }
+        });
         getContentPane().add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 410, 240, -1));
 
         btnRegistrarse.setBackground(new java.awt.Color(102, 102, 102));
@@ -142,6 +170,14 @@ public class vCrearCuenta extends javax.swing.JFrame {
         });
         getContentPane().add(btn_Regresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 70, 80, 20));
 
+        tgbtnVerPassword.setText("o");
+        tgbtnVerPassword.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                tgbtnVerPasswordMousePressed(evt);
+            }
+        });
+        getContentPane().add(tgbtnVerPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 410, 30, -1));
+
         bg_CrearCuenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/BG_InicioSesion.jpg"))); // NOI18N
         getContentPane().add(bg_CrearCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 420, 500));
 
@@ -151,6 +187,13 @@ public class vCrearCuenta extends javax.swing.JFrame {
     public vCrearCuenta(){
         initComponents();
         this.setLocationRelativeTo(null);
+    }
+    
+    private void limiteTextBox(java.awt.event.KeyEvent evt, JTextField txt){
+        if(txt.getText().length() >= 30){
+            evt.consume();
+            Toolkit.getDefaultToolkit().beep();
+        }
     }
     
     private void btnRegistrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarseActionPerformed
@@ -193,6 +236,14 @@ public class vCrearCuenta extends javax.swing.JFrame {
         
         JOptionPane.showMessageDialog(null, "Se ha registrado al usuario correctamente", "Crear cuenta", JOptionPane.INFORMATION_MESSAGE);
         
+        txtRegistroNombre.setText("");
+        txtRegistroApellidoPaterno.setText("");
+        txtRegistroApellidoMaterno.setText("");
+        txtUsername.setText("");
+        txtPassword.setText("");
+        jCalendario.setDate(new Date());
+        cbRegistroSexo.setSelectedIndex(0);
+        
     }//GEN-LAST:event_btnRegistrarseActionPerformed
 
     private void subirBaseDeDatos(Usuario usuario, ConexionUsuarios conexion){
@@ -217,9 +268,18 @@ public class vCrearCuenta extends javax.swing.JFrame {
                             + "'" + anio + "-" + mes + "-" + dia + "'"
                             + "," + usuario.getDatos().getSexo() +")");
             
+            conexion.close();
+            
         } catch (SQLException ex) {
             System.out.println("sucedio un error al insertar datos");
         }
+        finally{
+                try {
+                    conexion.close();
+                } catch (Exception e) {
+                    System.out.println(e);
+                }
+            }
     }
     
     private void ImprimirVentana(String texto){
@@ -239,22 +299,36 @@ public class vCrearCuenta extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btn_RegresarMousePressed
 
+    private void txtRegistroNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRegistroNombreKeyTyped
+        limiteTextBox(evt, txtRegistroNombre);
+    }//GEN-LAST:event_txtRegistroNombreKeyTyped
+
+    private void txtRegistroApellidoPaternoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRegistroApellidoPaternoKeyTyped
+        limiteTextBox(evt, txtRegistroApellidoPaterno);
+    }//GEN-LAST:event_txtRegistroApellidoPaternoKeyTyped
+
+    private void txtRegistroApellidoMaternoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRegistroApellidoMaternoKeyTyped
+        limiteTextBox(evt, txtRegistroApellidoMaterno);
+    }//GEN-LAST:event_txtRegistroApellidoMaternoKeyTyped
+
+    private void txtUsernameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsernameKeyTyped
+        limiteTextBox(evt, txtUsername);
+    }//GEN-LAST:event_txtUsernameKeyTyped
+
+    private void txtPasswordKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPasswordKeyTyped
+        limiteTextBox(evt, txtPassword);
+    }//GEN-LAST:event_txtPasswordKeyTyped
+
+    private void tgbtnVerPasswordMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tgbtnVerPasswordMousePressed
+        if(tgbtnVerPassword.isSelected()) txtPassword.setEchoChar((char)0);
+        else txtPassword.setEchoChar('\u2022');
+    }//GEN-LAST:event_tgbtnVerPasswordMousePressed
+
 
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
  
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -302,6 +376,7 @@ public class vCrearCuenta extends javax.swing.JFrame {
     private javax.swing.JLabel lbSexo1;
     private javax.swing.JLabel lbTituloCrearCuenta;
     private javax.swing.JLabel lbUsername;
+    private javax.swing.JToggleButton tgbtnVerPassword;
     private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtRegistroApellidoMaterno;
     private javax.swing.JTextField txtRegistroApellidoPaterno;

@@ -11,6 +11,7 @@ public class ConexionUsuarios {
     
     String strConexion = "jdbc:sqlite:src/BaseDeDatos/Usuarios.s3db";
     Connection conexion = null;
+    PreparedStatement pstm;
     
     public ConexionUsuarios(){
         try {
@@ -22,9 +23,14 @@ public class ConexionUsuarios {
         }
     }
     
+    public void close() throws SQLException{
+        conexion.close();
+        pstm.close();
+    }
+    
     public int insertarSentencia(String lineaCodigo) throws SQLException{
         try {
-            PreparedStatement pstm = conexion.prepareStatement(lineaCodigo);
+            pstm = conexion.prepareStatement(lineaCodigo);
             pstm.execute();
             return 1;
         } catch (SQLiteException e) {
@@ -35,7 +41,7 @@ public class ConexionUsuarios {
     
     public ResultSet consultarRegistro(String lineaCodigo){
         try {
-           PreparedStatement pstm = conexion.prepareStatement(lineaCodigo);
+           pstm = conexion.prepareStatement(lineaCodigo);
            ResultSet respuesta = pstm.executeQuery();
            return respuesta;
         } catch (Exception e) {
