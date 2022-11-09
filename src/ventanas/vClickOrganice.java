@@ -81,6 +81,11 @@ public class vClickOrganice extends javax.swing.JFrame {
         btnTareas.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         btnTareas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnTareas.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
+        btnTareas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnTareasMousePressed(evt);
+            }
+        });
         getContentPane().add(btnTareas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 330, 250, 90));
 
         btnEventos.setBackground(new java.awt.Color(181, 246, 210));
@@ -176,6 +181,13 @@ public class vClickOrganice extends javax.swing.JFrame {
         cargarPanel(elPanel);
         elPanel.establecerDatos(usuario);
     }//GEN-LAST:event_btnConfiguracionesMousePressed
+
+    private void btnTareasMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTareasMousePressed
+
+        pTareas elPanel = new pTareas();
+        cargarPanel(elPanel);
+        
+    }//GEN-LAST:event_btnTareasMousePressed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
