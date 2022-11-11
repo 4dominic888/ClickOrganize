@@ -209,16 +209,16 @@ public class vCrearCuenta extends javax.swing.JFrame {
         String password = txtPassword.getText();
         
         // <editor-fold defaultstate="collapsed" desc="Validaciones">
-        if (nombre.isBlank()) { ImprimirVentana("El nombre está vacío"); return;}
-        if (apellidoPaterno.isBlank()) { ImprimirVentana("El apellido paterno está vacío"); return;}
-        if (apellidoMaterno.isBlank()) { ImprimirVentana("El apellido materno está vacío"); return;}
+        if (nombre.trim().equals("")) { ImprimirVentana("El nombre está vacío"); return;}
+        if (apellidoPaterno.trim().equals("")) { ImprimirVentana("El apellido paterno está vacío"); return;}
+        if (apellidoMaterno.trim().equals("")) { ImprimirVentana("El apellido materno está vacío"); return;}
         
         int anioActual = Integer.parseInt(new SimpleDateFormat("YYYY").format(new Date()));
         int edad = anioActual - (fechaNacimiento.getYear()+1900);
         
         if(edad <= 8) { ImprimirVentana("El año de nacimiento indica que tienes menos de 8 años"); return;}
         
-        if (username.isBlank()) { ImprimirVentana("El nombre de usuario está vacío"); return;}
+        if (username.trim().equals("")) { ImprimirVentana("El nombre de usuario está vacío"); return;}
         
         try {
             ResultSet resultado = conexion.consultarRegistro("SELECT * FROM Usuarios WHERE Username = '" + username + "'");   
@@ -228,7 +228,7 @@ public class vCrearCuenta extends javax.swing.JFrame {
             System.out.println("hubo un error");
         }
         
-        if (password.isBlank()) { ImprimirVentana("La contraseña está vacío"); return;}
+        if (password.trim().equals("")) { ImprimirVentana("La contraseña está vacío"); return;}
         
         // </editor-fold>
         

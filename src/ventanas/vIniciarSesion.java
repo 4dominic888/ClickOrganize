@@ -135,7 +135,7 @@ public class vIniciarSesion extends javax.swing.JFrame {
         try {
             
             //Username validations
-            if(txtUserName.getText().isBlank()) {JOptionPane.showMessageDialog(null, "No ha ingresado un nombre de usuario válido",
+            if(txtUserName.getText().trim().equals("")) {JOptionPane.showMessageDialog(null, "No ha ingresado un nombre de usuario válido",
                 "Error al Iniciar sesión", JOptionPane.WARNING_MESSAGE); return;}
             
             ResultSet resultado = conexion.consultarRegistro("SELECT * FROM Usuarios WHERE Username = '" + txtUserName.getText() + "'");
@@ -143,7 +143,7 @@ public class vIniciarSesion extends javax.swing.JFrame {
                 "Error al Iniciar sesión", JOptionPane.WARNING_MESSAGE); return;}
             
             //Password validations
-            if(txtPassword.getText().isBlank()) {JOptionPane.showMessageDialog(null, "No ha ingresado la contraseña",
+            if(txtPassword.getText().trim().equals("")) {JOptionPane.showMessageDialog(null, "No ha ingresado la contraseña",
                 "Error al Iniciar sesión", JOptionPane.WARNING_MESSAGE); return;}
             
             if(!resultado.getString(2).equals(txtPassword.getText())) {JOptionPane.showMessageDialog(null, "La contraseña no coincide con el usuario",

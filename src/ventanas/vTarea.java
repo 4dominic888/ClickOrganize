@@ -4,10 +4,7 @@
  */
 package ventanas;
 
-import javax.swing.JOptionPane;
-import javax.swing.tree.DefaultMutableTreeNode;
-import paqueteActividad.Tarea;
-
+import java.awt.Color;
 public class vTarea extends javax.swing.JFrame {
 
     public vTarea() {
@@ -30,91 +27,100 @@ public class vTarea extends javax.swing.JFrame {
         tgbtnCompletado = new javax.swing.JToggleButton();
         btnCRUD = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Tarea");
         setBackground(new java.awt.Color(102, 102, 102));
-        getContentPane().setLayout(null);
+        setType(java.awt.Window.Type.POPUP);
 
         jLabel3.setText("Nombre de la Tarea");
-        getContentPane().add(jLabel3);
-        jLabel3.setBounds(20, 20, 240, 16);
 
-        txtNombreTarea.setBackground(new java.awt.Color(102, 102, 102));
-        txtNombreTarea.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        getContentPane().add(txtNombreTarea);
-        txtNombreTarea.setBounds(20, 40, 280, 18);
+        txtNombreTarea.setBackground(new java.awt.Color(255, 255, 255));
+        txtNombreTarea.setForeground(new java.awt.Color(0, 0, 0));
+        txtNombreTarea.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jLabel2.setText("Prioridad");
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(20, 70, 240, 16);
-        getContentPane().add(spnPrioridad);
-        spnPrioridad.setBounds(20, 90, 64, 22);
+
+        spnPrioridad.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jLabel4.setText("Descripción");
-        getContentPane().add(jLabel4);
-        jLabel4.setBounds(20, 120, 240, 16);
 
-        txtDescripcion.setBackground(new java.awt.Color(102, 102, 102));
+        txtDescripcion.setBackground(new java.awt.Color(255, 255, 255));
         txtDescripcion.setColumns(20);
+        txtDescripcion.setForeground(new java.awt.Color(0, 0, 0));
         txtDescripcion.setRows(5);
-        txtDescripcion.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        txtDescripcion.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jScrollPane1.setViewportView(txtDescripcion);
 
-        getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(20, 140, 280, 84);
-
         jLabel1.setText("Completado");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(20, 240, 240, 16);
 
-        tgbtnCompletado.setBackground(new java.awt.Color(102, 102, 102));
-        tgbtnCompletado.setText("None");
-        getContentPane().add(tgbtnCompletado);
-        tgbtnCompletado.setBounds(20, 260, 80, 22);
+        tgbtnCompletado.setBackground(new java.awt.Color(158, 158, 158));
+        tgbtnCompletado.setForeground(new java.awt.Color(0, 0, 0));
+        tgbtnCompletado.setText("No");
+        tgbtnCompletado.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        tgbtnCompletado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tgbtnCompletadoActionPerformed(evt);
+            }
+        });
 
-        btnCRUD.setBackground(new java.awt.Color(102, 102, 102));
+        btnCRUD.setBackground(new java.awt.Color(255, 255, 255));
+        btnCRUD.setForeground(new java.awt.Color(0, 0, 0));
         btnCRUD.setText("CRUD");
-        getContentPane().add(btnCRUD);
-        btnCRUD.setBounds(20, 310, 280, 30);
+        btnCRUD.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNombreTarea, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(spnPrioridad, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tgbtnCompletado, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCRUD, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(50, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel3)
+                .addGap(4, 4, 4)
+                .addComponent(txtNombreTarea, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(jLabel2)
+                .addGap(6, 6, 6)
+                .addComponent(spnPrioridad, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(8, 8, 8)
+                .addComponent(jLabel4)
+                .addGap(4, 4, 4)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addComponent(jLabel1)
+                .addGap(4, 4, 4)
+                .addComponent(tgbtnCompletado, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addComponent(btnCRUD, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(48, Short.MAX_VALUE))
+        );
+
+        getAccessibleContext().setAccessibleParent(btnCRUD);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private Tarea tarea;
-    private DefaultMutableTreeNode nodo;
-    private int accion; //0 crear | 1 editar | 2 ver
-    
-    public void establecerAbierto(int accion, Tarea tarea, DefaultMutableTreeNode nodo){
-        this.accion = accion;
-        switch (accion) {
-            
-            case 0: //Crear
-            {
-                btnCRUD.setText("Agregar Tarea");
-                
-                btnCRUD.addMouseListener(new java.awt.event.MouseAdapter() {
-                @Override
-                public void mousePressed(java.awt.event.MouseEvent evt) {
-                    
-                if(txtNombreTarea.getText().isBlank()) { JOptionPane.showMessageDialog(null, "El nombre de la tarea está vacía", "Tarea", JOptionPane.WARNING_MESSAGE); return;}
-                if(spnPrioridad.getComponentCount() < 0) { JOptionPane.showMessageDialog(null, "La prioridad no puede ser negativa", "Tarea", JOptionPane.WARNING_MESSAGE); return;}
-                if(txtDescripcion.getText().isBlank()) { JOptionPane.showMessageDialog(null, "La descripción está vacía", "Tarea", JOptionPane.WARNING_MESSAGE); return;}
-                
-                Tarea algo = new Tarea(txtNombreTarea.getText(), spnPrioridad.getComponentCount(), txtDescripcion.getText(), tgbtnCompletado.isSelected());
-                
-                
-                }
-                });
-                
-            }
-                break;
-            default: throw new AssertionError();
-        }
-    }
-    
-    public Tarea agregarTarea(){
-        return tarea;
-    }
+    private void tgbtnCompletadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tgbtnCompletadoActionPerformed
+        tgbtnCompletado.setText(tgbtnCompletado.isSelected() ? "Si" : "No");
+        tgbtnCompletado.setBackground(tgbtnCompletado.isSelected() ? Color.getHSBColor(0, 0, 100) : Color.white);
+    }//GEN-LAST:event_tgbtnCompletadoActionPerformed
+
+
     
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -151,15 +157,15 @@ public class vTarea extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCRUD;
+    public javax.swing.JButton btnCRUD;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JSpinner spnPrioridad;
-    private javax.swing.JToggleButton tgbtnCompletado;
-    private javax.swing.JTextArea txtDescripcion;
-    private javax.swing.JTextField txtNombreTarea;
+    public javax.swing.JSpinner spnPrioridad;
+    public javax.swing.JToggleButton tgbtnCompletado;
+    public javax.swing.JTextArea txtDescripcion;
+    public javax.swing.JTextField txtNombreTarea;
     // End of variables declaration//GEN-END:variables
 }

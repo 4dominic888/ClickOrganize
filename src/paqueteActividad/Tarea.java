@@ -52,5 +52,12 @@ public class Tarea {
     }
     
     // </editor-fold> 
+
+    @Override
+    public String toString() {
+        return "Tarea{" + "nombre=" + nombre + ", prioridad=" + prioridad + ", descripcion=" + descripcion + ", completado=" + completado + '}';
+    }
+    
+    
     
 }
