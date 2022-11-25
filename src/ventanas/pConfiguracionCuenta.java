@@ -10,9 +10,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import paqueteClasesUsuario.DatosUsuario;
@@ -72,7 +69,6 @@ public class pConfiguracionCuenta extends javax.swing.JPanel {
         txtPassword = new javax.swing.JPasswordField();
         btnActualizar = new javax.swing.JButton();
         btnEliminarCuenta = new javax.swing.JButton();
-        btnRegresar = new javax.swing.JButton();
         tgbtnVerPassword = new javax.swing.JToggleButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -179,12 +175,13 @@ public class pConfiguracionCuenta extends javax.swing.JPanel {
                 btnEliminarCuentaMousePressed(evt);
             }
         });
+        btnEliminarCuenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarCuentaActionPerformed(evt);
+            }
+        });
         add(btnEliminarCuenta);
         btnEliminarCuenta.setBounds(20, 520, 670, 30);
-
-        btnRegresar.setText("Regresar");
-        add(btnRegresar);
-        btnRegresar.setBounds(20, 20, 120, 22);
 
         tgbtnVerPassword.setText("o");
         tgbtnVerPassword.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -249,15 +246,15 @@ public class pConfiguracionCuenta extends javax.swing.JPanel {
         
         // <editor-fold defaultstate="collapsed" desc="Validaciones">
         
-        if(nombre.isBlank()) { ImprimirVentana("El nombre está vacío"); return;}
-        if(apellidoPaterno.isBlank()) {ImprimirVentana("El apellido paterno está vacío");return;}
-        if(apellidoMaterno.isBlank()) {ImprimirVentana("El apellido materno está vacío"); return;}
+        if(nombre.trim().equals("")) { ImprimirVentana("El nombre está vacío"); return;}
+        if(apellidoPaterno.trim().equals("")) {ImprimirVentana("El apellido paterno está vacío");return;}
+        if(apellidoMaterno.trim().equals("")) {ImprimirVentana("El apellido materno está vacío"); return;}
         
         int anioActual = Integer.parseInt(new SimpleDateFormat("YYYY").format(new Date()));
         int edad = anioActual - (fechaNacimiento.getYear()+1900);
         
         if(edad <= 8) { ImprimirVentana("El año de nacimiento indica que tienes menos de 8 años"); return;}  
-        if (username.isBlank()) { ImprimirVentana("El nombre de usuario está vacío"); return;}
+        if (username.trim().equals("")) { ImprimirVentana("El nombre de usuario está vacío"); return;}
         
          try {
             ResultSet resultado = conexion.consultarRegistro("SELECT * FROM Usuarios WHERE Username = '" + username + "'");
@@ -270,7 +267,8 @@ public class pConfiguracionCuenta extends javax.swing.JPanel {
             System.out.println("hubo un error");
         }
          
-        if (password.isBlank()) { ImprimirVentana("La contraseña está vacío"); return;}
+        if (password.trim().equals("")) { ImprimirVentana("La contraseña está vacía"); return;}
+        if (password.trim().contains("123")) { ImprimirVentana("La contraseña que intenta colocar es insegura"); return;}
         
         // </editor-fold>
         
@@ -319,11 +317,14 @@ public class pConfiguracionCuenta extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnEliminarCuentaMousePressed
 
+    private void btnEliminarCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarCuentaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEliminarCuentaActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualizar;
     private javax.swing.JButton btnEliminarCuenta;
-    private javax.swing.JButton btnRegresar;
     private javax.swing.JComboBox<String> cb_Sexo;
     private com.toedter.calendar.JDateChooser jDateFechaNacimiento;
     private javax.swing.JLabel lbApellidoMaterno;

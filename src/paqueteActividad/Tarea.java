@@ -1,6 +1,8 @@
 package paqueteActividad;
 
-public class Tarea {
+import java.io.Serializable;
+
+public class Tarea implements Serializable{
     protected String nombre;
     protected int prioridad;
     protected String descripcion;

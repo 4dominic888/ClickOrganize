@@ -5,6 +5,10 @@
 package ventanas;
 
 import java.awt.Color;
+import java.awt.Toolkit;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import paqueteActividad.Tarea;
 public class vTarea extends javax.swing.JFrame {
 
     public vTarea() {
@@ -12,6 +16,10 @@ public class vTarea extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
     }
 
+    private Tarea editarTarea = new Tarea();
+    public Tarea getEditarTarea() {return editarTarea;}
+    public void setEditarTarea(Tarea editarTarea) { this.editarTarea = editarTarea;}
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -37,6 +45,11 @@ public class vTarea extends javax.swing.JFrame {
         txtNombreTarea.setBackground(new java.awt.Color(255, 255, 255));
         txtNombreTarea.setForeground(new java.awt.Color(0, 0, 0));
         txtNombreTarea.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        txtNombreTarea.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombreTareaKeyTyped(evt);
+            }
+        });
 
         jLabel2.setText("Prioridad");
 
@@ -47,7 +60,9 @@ public class vTarea extends javax.swing.JFrame {
         txtDescripcion.setBackground(new java.awt.Color(255, 255, 255));
         txtDescripcion.setColumns(20);
         txtDescripcion.setForeground(new java.awt.Color(0, 0, 0));
+        txtDescripcion.setLineWrap(true);
         txtDescripcion.setRows(5);
+        txtDescripcion.setWrapStyleWord(true);
         txtDescripcion.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jScrollPane1.setViewportView(txtDescripcion);
 
@@ -57,6 +72,11 @@ public class vTarea extends javax.swing.JFrame {
         tgbtnCompletado.setForeground(new java.awt.Color(0, 0, 0));
         tgbtnCompletado.setText("No");
         tgbtnCompletado.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        tgbtnCompletado.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                tgbtnCompletadoStateChanged(evt);
+            }
+        });
         tgbtnCompletado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tgbtnCompletadoActionPerformed(evt);
@@ -120,7 +140,26 @@ public class vTarea extends javax.swing.JFrame {
         tgbtnCompletado.setBackground(tgbtnCompletado.isSelected() ? Color.getHSBColor(0, 0, 100) : Color.white);
     }//GEN-LAST:event_tgbtnCompletadoActionPerformed
 
+    private void txtNombreTareaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreTareaKeyTyped
+        validacionCaracteres(evt);
+    }//GEN-LAST:event_txtNombreTareaKeyTyped
 
+    private void tgbtnCompletadoStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_tgbtnCompletadoStateChanged
+        tgbtnCompletado.setText(tgbtnCompletado.isSelected() ? "Si" : "No");
+        tgbtnCompletado.setBackground(tgbtnCompletado.isSelected() ? Color.getHSBColor(0, 0, 100) : Color.white);
+    }//GEN-LAST:event_tgbtnCompletadoStateChanged
+
+    public void validacionCaracteres(java.awt.event.KeyEvent evt){
+        if(evt.getKeyChar() >= 33 && evt.getKeyChar() <= 64
+        || evt.getKeyChar() >= 91 && evt.getKeyChar() <= 96
+        || evt.getKeyChar() >= 123 && evt.getKeyChar() <= 208
+        || evt.getKeyChar() >= 210 && evt.getKeyChar() <= 240
+        || evt.getKeyChar() >= 242 && evt.getKeyChar() <= 255){
+            
+            evt.consume();
+            Toolkit.getDefaultToolkit().beep();
+        }
+    }
     
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

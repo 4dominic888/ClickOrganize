@@ -228,8 +228,8 @@ public class vCrearCuenta extends javax.swing.JFrame {
             System.out.println("hubo un error");
         }
         
-        if (password.trim().equals("")) { ImprimirVentana("La contraseña está vacío"); return;}
-        
+        if (password.trim().equals("")) { ImprimirVentana("La contraseña está vacía"); return;}
+        if (password.trim().contains("123")) { ImprimirVentana("La contraseña que intenta colocar es insegura"); return;}
         // </editor-fold>
         
         subirBaseDeDatos(new Usuario(username, password, new DatosUsuario(nombre, apellidoPaterno, apellidoMaterno, fechaNacimiento, sexo)), conexion);
@@ -243,6 +243,12 @@ public class vCrearCuenta extends javax.swing.JFrame {
         txtPassword.setText("");
         jCalendario.setDate(new Date());
         cbRegistroSexo.setSelectedIndex(0);
+        
+        try {
+            conexion.close();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
         
     }//GEN-LAST:event_btnRegistrarseActionPerformed
 
@@ -268,7 +274,6 @@ public class vCrearCuenta extends javax.swing.JFrame {
                             + "'" + anio + "-" + mes + "-" + dia + "'"
                             + "," + usuario.getDatos().getSexo() +")");
             
-            conexion.close();
             
         } catch (SQLException ex) {
             System.out.println("sucedio un error al insertar datos");

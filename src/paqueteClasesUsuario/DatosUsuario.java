@@ -4,9 +4,9 @@ import java.util.Date;
 
 public class DatosUsuario {
     //Atributos de nombre
-    protected String nombreCompleto = "None";
-    protected String apellidoPaterno = "None";
-    protected String apellidoMaterno = "None";
+    protected String nombreCompleto;
+    protected String apellidoPaterno;
+    protected String apellidoMaterno;
     
     //Atributos extra
     protected Date fechaNacimiento;
