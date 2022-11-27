@@ -37,6 +37,7 @@ public class pTareas extends javax.swing.JPanel {
         JArbolTareas = new javax.swing.JTree();
         btnImportarListaTareas = new javax.swing.JButton();
         btnExportarListaTareas = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         MenuContextualTarea.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
             public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
@@ -107,7 +108,7 @@ public class pTareas extends javax.swing.JPanel {
         jScrollPane1.setViewportView(JArbolTareas);
 
         add(jScrollPane1);
-        jScrollPane1.setBounds(10, 10, 450, 670);
+        jScrollPane1.setBounds(10, 50, 450, 630);
 
         btnImportarListaTareas.setBackground(new java.awt.Color(204, 204, 204));
         btnImportarListaTareas.setForeground(new java.awt.Color(0, 0, 0));
@@ -118,7 +119,7 @@ public class pTareas extends javax.swing.JPanel {
             }
         });
         add(btnImportarListaTareas);
-        btnImportarListaTareas.setBounds(470, 60, 260, 40);
+        btnImportarListaTareas.setBounds(470, 100, 260, 40);
 
         btnExportarListaTareas.setBackground(new java.awt.Color(204, 204, 204));
         btnExportarListaTareas.setForeground(new java.awt.Color(0, 0, 0));
@@ -129,7 +130,14 @@ public class pTareas extends javax.swing.JPanel {
             }
         });
         add(btnExportarListaTareas);
-        btnExportarListaTareas.setBounds(470, 12, 260, 40);
+        btnExportarListaTareas.setBounds(470, 50, 260, 40);
+
+        jLabel1.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel1.setText("Lista de Tareas");
+        add(jLabel1);
+        jLabel1.setBounds(20, 10, 240, 30);
     }// </editor-fold>//GEN-END:initComponents
 
     private DefaultTreeModel modelo;
@@ -319,41 +327,42 @@ public class pTareas extends javax.swing.JPanel {
     
     
     private void OpcionAgregarTareaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_OpcionAgregarTareaMousePressed
-        vTarea ventanaAgregar = new vTarea();
-        ventanaAgregar.setVisible(true);
+        vTarea ventanaAgregarTarea = new vTarea();
+        ventanaAgregarTarea.setVisible(true);
         
-        ventanaAgregar.btnCRUD.setText("Agregar Tarea");
+        ventanaAgregarTarea.btnCRUD.setText("Agregar Tarea");
         
-        ventanaAgregar.btnCRUD.addActionListener(new java.awt.event.ActionListener() {
+        ventanaAgregarTarea.btnCRUD.addActionListener(new java.awt.event.ActionListener() {
+            @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
 
         Tarea tarea;
         
         
-        if(ventanaAgregar.txtNombreTarea.getText().trim().equals("")) { JOptionPane.showMessageDialog(null, "El nombre de la tarea está vacía", "Tarea", JOptionPane.WARNING_MESSAGE); return;}
-        if(ventanaAgregar.txtNombreTarea.getText().trim().equals("root")) { JOptionPane.showMessageDialog(null, "No puedes usar este nombre", "Tarea", JOptionPane.WARNING_MESSAGE); return;}
-        if(tareaNombreRepetido(ventanaAgregar.txtNombreTarea.getText().trim())) { JOptionPane.showMessageDialog(null, "El nombre de la tarea ya existe, elija otro", "Tarea", JOptionPane.WARNING_MESSAGE); return;}
-        if(Integer.parseInt(ventanaAgregar.spnPrioridad.getValue().toString()) < 0 ) { JOptionPane.showMessageDialog(null, "La prioridad no puede ser negativa", "Tarea", JOptionPane.WARNING_MESSAGE); return;}
-        if(ventanaAgregar.txtDescripcion.getText().trim().equals("")) { JOptionPane.showMessageDialog(null, "La descripción está vacía", "Tarea", JOptionPane.WARNING_MESSAGE); return;}
+        if(ventanaAgregarTarea.txtNombreTarea.getText().trim().equals("")) { JOptionPane.showMessageDialog(null, "El nombre de la tarea está vacía", "Tarea", JOptionPane.WARNING_MESSAGE); return;}
+        if(ventanaAgregarTarea.txtNombreTarea.getText().trim().equals("root")) { JOptionPane.showMessageDialog(null, "No puedes usar este nombre", "Tarea", JOptionPane.WARNING_MESSAGE); return;}
+        if(tareaNombreRepetido(ventanaAgregarTarea.txtNombreTarea.getText().trim())) { JOptionPane.showMessageDialog(null, "El nombre de la tarea ya existe, elija otro", "Tarea", JOptionPane.WARNING_MESSAGE); return;}
+        if(Integer.parseInt(ventanaAgregarTarea.spnPrioridad.getValue().toString()) < 0 ) { JOptionPane.showMessageDialog(null, "La prioridad no puede ser negativa", "Tarea", JOptionPane.WARNING_MESSAGE); return;}
+        if(ventanaAgregarTarea.txtDescripcion.getText().trim().equals("")) { JOptionPane.showMessageDialog(null, "La descripción está vacía", "Tarea", JOptionPane.WARNING_MESSAGE); return;}
 
-        tarea = new Tarea(ventanaAgregar.txtNombreTarea.getText(), Integer.parseInt(ventanaAgregar.spnPrioridad.getValue().toString()), ventanaAgregar.txtDescripcion.getText(), ventanaAgregar.tgbtnCompletado.isSelected());
+        tarea = new Tarea(ventanaAgregarTarea.txtNombreTarea.getText(), Integer.parseInt(ventanaAgregarTarea.spnPrioridad.getValue().toString()), ventanaAgregarTarea.txtDescripcion.getText(), ventanaAgregarTarea.tgbtnCompletado.isSelected());
 
         if(nodoSeleccionado == null) nodoSeleccionado = (DefaultMutableTreeNode)JArbolTareas.getModel().getRoot();
          tareas.add(tarea);
          
-         String nombreTarea = ventanaAgregar.tgbtnCompletado.isSelected() ? String.format(BOLD_FORMAT, ventanaAgregar.txtNombreTarea.getText()) : ventanaAgregar.txtNombreTarea.getText();
+         String nombreTarea = ventanaAgregarTarea.tgbtnCompletado.isSelected() ? String.format(BOLD_FORMAT, ventanaAgregarTarea.txtNombreTarea.getText()) : ventanaAgregarTarea.txtNombreTarea.getText();
          
          modelo.insertNodeInto(new DefaultMutableTreeNode(nombreTarea), 
                  nodoSeleccionado, nodoSeleccionado.getChildCount());
          JArbolTareas.setModel(modelo);
          
-         ventanaAgregar.txtNombreTarea.setText("");
-         ventanaAgregar.txtDescripcion.setText("");
-         ventanaAgregar.spnPrioridad.setValue(0);
-         ventanaAgregar.tgbtnCompletado.setSelected(false);
+         ventanaAgregarTarea.txtNombreTarea.setText("");
+         ventanaAgregarTarea.txtDescripcion.setText("");
+         ventanaAgregarTarea.spnPrioridad.setValue(0);
+         ventanaAgregarTarea.tgbtnCompletado.setSelected(false);
          JArbolTareas.clearSelection();
          nodoSeleccionado = null;
-         ventanaAgregar.dispose();
+         ventanaAgregarTarea.dispose();
         }
         });
         
@@ -513,6 +522,7 @@ public class pTareas extends javax.swing.JPanel {
     private javax.swing.JMenuItem OpcionMostrarTarea;
     private javax.swing.JButton btnExportarListaTareas;
     private javax.swing.JButton btnImportarListaTareas;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

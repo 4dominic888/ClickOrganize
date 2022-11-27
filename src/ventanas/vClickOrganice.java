@@ -21,6 +21,10 @@ public class vClickOrganice extends javax.swing.JFrame {
         lbNombreUsuario.setText(usuario.getUsername());
         lbRangoUsuario.setText((usuario.isAdministrador()) ? "Administrador" : "Usuario");
     }
+    
+    private pMiCuenta elPanelMiCuenta = new pMiCuenta();
+    private pTareas elPanelTareas = new pTareas();
+    private pEventos elPanelEventos = new pEventos();
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -33,7 +37,6 @@ public class vClickOrganice extends javax.swing.JFrame {
         btnMiCuenta = new javax.swing.JButton();
         btnTareas = new javax.swing.JButton();
         btnEventos = new javax.swing.JButton();
-        btnConfiguraciones = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
         contenedor = new javax.swing.JPanel();
         bg_ClickOrganice = new javax.swing.JLabel();
@@ -72,6 +75,11 @@ public class vClickOrganice extends javax.swing.JFrame {
         btnMiCuenta.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         btnMiCuenta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnMiCuenta.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
+        btnMiCuenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMiCuentaActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnMiCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 240, 250, 90));
 
         btnTareas.setBackground(new java.awt.Color(181, 246, 210));
@@ -86,7 +94,7 @@ public class vClickOrganice extends javax.swing.JFrame {
                 btnTareasMousePressed(evt);
             }
         });
-        getContentPane().add(btnTareas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 330, 250, 90));
+        getContentPane().add(btnTareas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 330, 250, 130));
 
         btnEventos.setBackground(new java.awt.Color(181, 246, 210));
         btnEventos.setFont(new java.awt.Font("Rockwell", 0, 24)); // NOI18N
@@ -95,21 +103,12 @@ public class vClickOrganice extends javax.swing.JFrame {
         btnEventos.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         btnEventos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnEventos.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
-        getContentPane().add(btnEventos, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 420, 250, 90));
-
-        btnConfiguraciones.setBackground(new java.awt.Color(200, 210, 215));
-        btnConfiguraciones.setFont(new java.awt.Font("Rockwell", 0, 24)); // NOI18N
-        btnConfiguraciones.setForeground(new java.awt.Color(102, 102, 102));
-        btnConfiguraciones.setText("Configuraciones");
-        btnConfiguraciones.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        btnConfiguraciones.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnConfiguraciones.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
-        btnConfiguraciones.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnEventos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                btnConfiguracionesMousePressed(evt);
+                btnEventosMousePressed(evt);
             }
         });
-        getContentPane().add(btnConfiguraciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 510, 250, 90));
+        getContentPane().add(btnEventos, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 460, 250, 140));
 
         btnSalir.setBackground(new java.awt.Color(255, 198, 198));
         btnSalir.setFont(new java.awt.Font("Rockwell", 0, 24)); // NOI18N
@@ -167,6 +166,7 @@ public class vClickOrganice extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalirMousePressed
 
     private void cargarPanel(JPanel panel){
+        
         panel.setSize(740, 690);
         panel.locate(0, 0);
         contenedor.removeAll();
@@ -176,18 +176,22 @@ public class vClickOrganice extends javax.swing.JFrame {
     }
     
     
-    private void btnConfiguracionesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConfiguracionesMousePressed
-        pConfiguracionCuenta elPanel = new pConfiguracionCuenta();
-        cargarPanel(elPanel);
-        elPanel.establecerDatos(usuario);
-    }//GEN-LAST:event_btnConfiguracionesMousePressed
-
     private void btnTareasMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTareasMousePressed
 
-        pTareas elPanel = new pTareas();
-        cargarPanel(elPanel);
+        cargarPanel(elPanelTareas);
         
     }//GEN-LAST:event_btnTareasMousePressed
+
+    private void btnEventosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEventosMousePressed
+
+       cargarPanel(elPanelEventos);
+       
+    }//GEN-LAST:event_btnEventosMousePressed
+
+    private void btnMiCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMiCuentaActionPerformed
+        cargarPanel(elPanelMiCuenta);
+        elPanelMiCuenta.establecerDatos(usuario);
+    }//GEN-LAST:event_btnMiCuentaActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -223,7 +227,6 @@ public class vClickOrganice extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel bg_ClickOrganice;
-    private javax.swing.JButton btnConfiguraciones;
     private javax.swing.JButton btnEventos;
     private javax.swing.JButton btnMiCuenta;
     private javax.swing.JButton btnSalir;

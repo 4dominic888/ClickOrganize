@@ -61,7 +61,7 @@ public class Evento extends Tarea {
     
     public long duracionEventoInicio(char formato){
         Date hoy = new Date();
-        long tiempoTranscurrido =  hoy.getTime() - this.fechasEvento[0].getTime();
+        long tiempoTranscurrido = this.fechasEvento[0].getTime() - hoy.getTime();
         TimeUnit unidad;
         long retorno;
         switch (formato) {
@@ -76,7 +76,7 @@ public class Evento extends Tarea {
     
     public long duracionEventoFin(char formato){
         Date hoy = new Date();
-        long tiempoTranscurrido =  hoy.getTime() - this.fechasEvento[1].getTime();
+        long tiempoTranscurrido =  this.fechasEvento[1].getTime() - hoy.getTime();
         TimeUnit unidad;
         long retorno;
         switch (formato) {

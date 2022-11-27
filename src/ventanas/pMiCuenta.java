@@ -19,12 +19,12 @@ import paqueteClasesUsuario.Usuario;
  *
  * @author 4dominic888
  */
-public class pConfiguracionCuenta extends javax.swing.JPanel {
+public class pMiCuenta extends javax.swing.JPanel {
 
     /**
      * Creates new form pConfiguracionCuenta
      */
-    public pConfiguracionCuenta() {
+    public pMiCuenta() {
         initComponents();
     }
     
@@ -89,7 +89,7 @@ public class pConfiguracionCuenta extends javax.swing.JPanel {
         txtEditarNombre.setForeground(new java.awt.Color(102, 102, 102));
         txtEditarNombre.setText("nombre");
         add(txtEditarNombre);
-        txtEditarNombre.setBounds(20, 140, 670, 22);
+        txtEditarNombre.setBounds(20, 140, 670, 30);
 
         lbApellidoPaterno.setForeground(new java.awt.Color(0, 0, 0));
         lbApellidoPaterno.setText("Apellido Paterno");
@@ -100,7 +100,7 @@ public class pConfiguracionCuenta extends javax.swing.JPanel {
         txtApellidoPaterno.setForeground(new java.awt.Color(102, 102, 102));
         txtApellidoPaterno.setText("nombre");
         add(txtApellidoPaterno);
-        txtApellidoPaterno.setBounds(20, 190, 670, 22);
+        txtApellidoPaterno.setBounds(20, 190, 670, 30);
 
         lbApellidoMaterno.setForeground(new java.awt.Color(0, 0, 0));
         lbApellidoMaterno.setText("Apellido Materno");
@@ -111,7 +111,7 @@ public class pConfiguracionCuenta extends javax.swing.JPanel {
         txtApellidoMaterno.setForeground(new java.awt.Color(102, 102, 102));
         txtApellidoMaterno.setText("nombre");
         add(txtApellidoMaterno);
-        txtApellidoMaterno.setBounds(20, 240, 670, 22);
+        txtApellidoMaterno.setBounds(20, 240, 670, 30);
 
         lbFechaNacimiento.setForeground(new java.awt.Color(0, 0, 0));
         lbFechaNacimiento.setText("Fecha De Nacimiento");
@@ -121,7 +121,7 @@ public class pConfiguracionCuenta extends javax.swing.JPanel {
         jDateFechaNacimiento.setBackground(new java.awt.Color(255, 255, 255));
         jDateFechaNacimiento.setForeground(new java.awt.Color(102, 102, 102));
         add(jDateFechaNacimiento);
-        jDateFechaNacimiento.setBounds(20, 290, 670, 22);
+        jDateFechaNacimiento.setBounds(20, 290, 670, 30);
 
         lbSexo.setForeground(new java.awt.Color(0, 0, 0));
         lbSexo.setText("Sexo");
@@ -132,7 +132,7 @@ public class pConfiguracionCuenta extends javax.swing.JPanel {
         cb_Sexo.setForeground(new java.awt.Color(102, 102, 102));
         cb_Sexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Masculino", "Femenino" }));
         add(cb_Sexo);
-        cb_Sexo.setBounds(20, 340, 670, 22);
+        cb_Sexo.setBounds(20, 340, 670, 30);
 
         lbUsername.setForeground(new java.awt.Color(0, 0, 0));
         lbUsername.setText("Username");
@@ -143,7 +143,7 @@ public class pConfiguracionCuenta extends javax.swing.JPanel {
         txtUsername.setForeground(new java.awt.Color(102, 102, 102));
         txtUsername.setText("nombre");
         add(txtUsername);
-        txtUsername.setBounds(20, 390, 670, 22);
+        txtUsername.setBounds(20, 390, 670, 30);
 
         lbPassword.setForeground(new java.awt.Color(0, 0, 0));
         lbPassword.setText("Password");
@@ -154,7 +154,7 @@ public class pConfiguracionCuenta extends javax.swing.JPanel {
         txtPassword.setForeground(new java.awt.Color(102, 102, 102));
         txtPassword.setText("contra");
         add(txtPassword);
-        txtPassword.setBounds(20, 440, 670, 22);
+        txtPassword.setBounds(20, 440, 670, 30);
 
         btnActualizar.setBackground(new java.awt.Color(204, 204, 204));
         btnActualizar.setForeground(new java.awt.Color(102, 102, 102));
@@ -190,7 +190,7 @@ public class pConfiguracionCuenta extends javax.swing.JPanel {
             }
         });
         add(tgbtnVerPassword);
-        tgbtnVerPassword.setBounds(698, 440, 22, 20);
+        tgbtnVerPassword.setBounds(700, 440, 30, 30);
     }// </editor-fold>//GEN-END:initComponents
 
     private void tgbtnVerPasswordMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tgbtnVerPasswordMousePressed
